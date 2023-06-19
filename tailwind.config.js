@@ -4,7 +4,18 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
+      maxHeight: {
+        '128': '538px',
+      },
+      borderRadius: {
+        'large': '180px',
+        'default': '20px',
+      }
+    },
   },
   plugins: [],
 }

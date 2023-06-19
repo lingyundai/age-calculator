@@ -1,8 +1,19 @@
 function Calculator() {
     return (
-        <div>
-            <h1>hello</h1>
-        </div>
+        <form class="flex">
+            <label>
+                DAY
+                <input name="day" />
+            </label>
+            <label>
+                MONTH
+                <input name="month" />
+            </label>
+            <label>
+                YEAR
+                <input name="year" />
+            </label>
+        </form>
     )
 }
 
