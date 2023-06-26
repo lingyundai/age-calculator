@@ -15,6 +15,9 @@ module.exports = {
         'large': '100px',
         'default': '30px',
       },
+      fontSize: {
+        'lg': ['19px', '29px'],
+      },
     },
   },
   plugins: [],
