@@ -12,9 +12,9 @@ module.exports = {
         '128': '538px',
       },
       borderRadius: {
-        'large': '180px',
-        'default': '20px',
-      }
+        'large': '100px',
+        'default': '30px',
+      },
     },
   },
   plugins: [],
