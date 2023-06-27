@@ -6,3 +6,8 @@
     font-family: "Poppins";
     src: url("../src/assets/fonts/Poppins-Regular.ttf") format("ttf");
 }
+
+@font-face {
+    font-family: "Poppins-Bold-Italic";
+    src: url("../src/assets/fonts/Poppins-ExtraBoldItalic.ttf") format("ttf");
+}

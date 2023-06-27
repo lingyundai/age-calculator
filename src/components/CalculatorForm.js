@@ -1,4 +1,4 @@
-function Calculator() {
+function CalculatorForm() {
 
     return (
         <form class="max-w-fit pt-6">
@@ -26,12 +26,11 @@ function Calculator() {
                 <hr class="w-full"/>
                 <svg class="w-14 h-14 bg-violet-500 rounded-full absolute" viewBox="-32 15 110 15" xmlns="http://www.w3.org/2000/svg">
                     <path fill="none" stroke="#FFF" stroke-width="3"
-                        d="M1 22.019C8.333 21.686 23 25.616 23 44m0 0V0m22 22.019C37.667 21.686 23 25.616 23 44"
-                    />
+                        d="M1 22.019C8.333 21.686 23 25.616 23 44m0 0V0m22 22.019C37.667 21.686 23 25.616 23 44"/>
                 </svg>
             </div>
         </form>
     )
 }
 
-export default Calculator;
+export default CalculatorForm;
