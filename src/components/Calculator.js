@@ -1,4 +1,5 @@
 function Calculator() {
+
     return (
         <form class="max-w-fit pt-6">
             <div class="flex pt-5 space-x-4 justify-center">
@@ -21,8 +22,13 @@ function Calculator() {
                         focus:outline-none focus:border-violet-500" />
                 </div>
             </div>
-            <div class="pt-16 px-7">
-                <hr />
+            <div class="pt-16 px-7 inline-flex items-center justify-center w-full" onClick={e => console.log("onclick")}>
+                <hr class="w-full"/>
+                <svg class="w-14 h-14 bg-violet-500 rounded-full absolute" viewBox="-32 15 110 15" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="none" stroke="#FFF" stroke-width="3"
+                        d="M1 22.019C8.333 21.686 23 25.616 23 44m0 0V0m22 22.019C37.667 21.686 23 25.616 23 44"
+                    />
+                </svg>
             </div>
         </form>
     )
