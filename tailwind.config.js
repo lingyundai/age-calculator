@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
-        poppinsItalic: ['Poppins-Bold-Italic', 'sans-serif'],
+        poppinsBoldItalic: ['Poppins-Bold-Italic', 'sans-serif'],
+        poppinsItalic: ['Poppins-Italic', 'sans-serif'],
       },
       maxHeight: {
         '128': '538px',

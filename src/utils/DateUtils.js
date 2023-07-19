@@ -1,9 +1,15 @@
-// import { format } from 'date-fns';
+import { format, intervalToDuration, parse } from 'date-fns';
 
-// function DateUtils(year, month, day) {
-//     const result = format(new Date(year, month, day), 'MM/dd/yyyy');
-//     console.log(result);
-//     return result;
-// }
+function DateUtils() {
+    // const birthDate = `${month}-${day}-${year}`;
+    // console.log("here: ", birthDate);
 
-// export default DateUtils;
+    // const today = new Date();
+
+    // console.log(intervalToDuration({ start: new Date(birthDate), 
+    //     end: today }));
+
+    // // return { years, months, days };
+}
+
+export default DateUtils;
