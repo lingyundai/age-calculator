@@ -11,7 +11,9 @@ function CalculatorForm() {
         showDay: false,
         showMonth: false,
         showYear: false,
-        errorMessage: '',
+        dayErrorMessage: '',
+        monthErrorMessage: '',
+        yearErrorMessage: '',
     };
 
     const [inputFields, setInputFields] = useState(defaultInputValues);
@@ -34,19 +36,19 @@ function CalculatorForm() {
             setInputError((inputError) => ({
                 ...inputError,
                 showDay: true,
-                errorMessage: 'This field is required',
+                dayErrorMessage: 'This field is required',
             }))
         } else if (parseInt(day, 10) > 31 || parseInt(day, 10) < 0) {
             setInputError((inputError) => ({
                 ...inputError,
                 showDay: true,
-                errorMessage: 'Must be a valid day',
+                dayErrorMessage: 'Must be a valid day',
             }))
         } else {
             setInputError((inputError) => ({
                 ...inputError,
                 showDay: false,
-                errorMessage: '',
+                dayErrorMessage: '',
             }))
         }
         console.log("day", inputError);
@@ -56,19 +58,19 @@ function CalculatorForm() {
             setInputError((inputError) => ({
                 ...inputError,
                 showMonth: true,
-                errorMessage: 'This field is required',
+                monthErrorMessage: 'This field is required',
             }))
         } else if (parseInt(month, 10) > 12 || parseInt(month, 10) < 0) {
             setInputError((inputError) => ({
                 ...inputError,
                 showMonth: true,
-                errorMessage: 'Must be a valid month',
+                monthErrorMessage: 'Must be a valid month',
             }))
         } else {
             setInputError((inputError) => ({
                 ...inputError,
                 showMonth: false,
-                errorMessage: '',
+                monthErrorMessage: '',
             }))
         }
         console.log("month", inputError);
@@ -78,19 +80,19 @@ function CalculatorForm() {
             setInputError((inputError) => ({
                 ...inputError,
                 showYear: true,
-                errorMessage: 'This field is required',
+                yearErrorMessage: 'This field is required',
             }))
         } else if (parseInt(year, 10) < 1823 || parseInt(year, 10) < 0) {
             setInputError((inputError) => ({
                 ...inputError,
                 showYear: true,
-                errorMessage: 'Must be a valid year',
+                yearErrorMessage: 'Must be a valid year',
             }))
         } else {
             setInputError((inputError) => ({
                 ...inputError,
                 showYear: false,
-                errorMessage: '',
+                yearErrorMessage: '',
             }))
         }
         console.log("year", inputError);
@@ -116,7 +118,7 @@ function CalculatorForm() {
                         : "border rounded-md w-full text-lg py-2 text-black tracking-wider indent-3 focus:outline-none focus:border-violet-500"}
                     />
                     {inputError.showDay && 
-                        <div class={"text-red-400 font-poppinsItalic font-thin tracking-normal"}>{inputError.errorMessage}</div>}
+                        <div class={"text-red-400 font-poppinsItalic font-thin tracking-normal"}>{inputError.dayErrorMessage}</div>}
                 </div>
                 <div class="w-1/4">
                     <label class={inputError.showMonth ? "text-red-400" : "text-stone-500"}>MONTH</label>
@@ -130,7 +132,7 @@ function CalculatorForm() {
                             : "border rounded-md w-full text-lg py-2 text-black tracking-wider indent-3 focus:outline-none focus:border-violet-500"}
                     />
                     {inputError.showMonth && 
-                        <div class={"text-red-400 font-poppinsItalic font-thin tracking-normal"}>{inputError.errorMessage}</div>}
+                        <div class={"text-red-400 font-poppinsItalic font-thin tracking-normal"}>{inputError.monthErrorMessage}</div>}
                 </div>
                 <div class="w-1/4">
                     <label class={inputError.showYear ? "text-red-400" : "text-stone-500"}>YEAR</label>
@@ -144,7 +146,7 @@ function CalculatorForm() {
                             : "border rounded-md w-full text-lg py-2 text-black tracking-wider indent-3 focus:outline-none focus:border-violet-500"}
                     />
                     {inputError.showYear && 
-                        <div class={"text-red-400 font-poppinsItalic font-thin tracking-normal"}>{inputError.errorMessage}</div>}
+                        <div class={"text-red-400 font-poppinsItalic font-thin tracking-normal"}>{inputError.yearErrorMessage}</div>}
                 </div>
             </div>
             <button class="pt-16 px-7 inline-flex items-center justify-center w-full">
