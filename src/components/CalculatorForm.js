@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {DateUtils} from "../utils/DateUtils";
 
 function CalculatorForm() {
     const defaultInputValues = {
@@ -75,6 +76,7 @@ function CalculatorForm() {
         }
         console.log("month", inputError);
 
+        const currentYear = new Date().getFullYear();
         // year
         if (!year || year === "") {
             setInputError((inputError) => ({
@@ -82,7 +84,7 @@ function CalculatorForm() {
                 showYear: true,
                 yearErrorMessage: 'This field is required',
             }))
-        } else if (parseInt(year, 10) < 1823 || parseInt(year, 10) < 0) {
+        } else if (parseInt(year, 10) < 1823 || parseInt(year, 10) < 0 || parseInt(year, 10) > currentYear) {
             setInputError((inputError) => ({
                 ...inputError,
                 showYear: true,
@@ -102,6 +104,8 @@ function CalculatorForm() {
         e.preventDefault();
         validateInputs();
     }
+
+    DateUtils(inputFields.day, inputFields.month, inputFields.year);
 
     return (
         <form class="max-w-fit pt-6 font-poppins font-semibold text-[11px] tracking-[0.2em]" onSubmit={handleSubmit}>
