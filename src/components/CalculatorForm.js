@@ -19,8 +19,13 @@ function CalculatorForm() {
 
     const [inputFields, setInputFields] = useState(defaultInputValues);
     const [inputError, setInputError] = useState(defaultErrorValues);
+    const [ageResult, setAgeResult] = useState(0);
 
     const { year, month, day } = inputFields;
+
+    const { diffYear, diffMonth, diffDay } = ageResult;
+
+    console.log(ageResult);
 
     const handleChange = (e) => {
         setInputFields({
@@ -103,9 +108,15 @@ function CalculatorForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         validateInputs();
+        if (inputError.showDay === false && inputError.showMonth === false && inputError.showYear === false) {
+            const res = DateUtils(inputFields.day, inputFields.month, inputFields.year);
+            setAgeResult({
+                diffDay: res.diffDay,
+                diffMonth: res.diffMonth,
+                diffYear: res.diffYear,
+            })
+        }
     }
-
-    DateUtils(inputFields.day, inputFields.month, inputFields.year);
 
     return (
         <form class="max-w-fit pt-6 font-poppins font-semibold text-[11px] tracking-[0.2em]" onSubmit={handleSubmit}>
@@ -160,15 +171,17 @@ function CalculatorForm() {
                         d="M1 22.019C8.333 21.686 23 25.616 23 44m0 0V0m22 22.019C37.667 21.686 23 25.616 23 44"/>
                 </svg>
             </button>
-            <div class="flex flex-col text-5xl items-center font-poppinsBoldItalic pt-20 space-y-1">
+            <div class="flex flex-col text-5xl items-center font-poppinsBoldItalic pt-20 space-y-1 tracking-tight">
                 <div>
-                    {/* {inputFields.year} */}
+                    <span class="mr-2.5 text-violet-500">{!isNaN(diffYear) ? diffYear : "- -"}</span>
                     years
                 </div>
                 <div>
+                    <span class="mr-2.5 text-violet-500">{!isNaN(diffMonth) ? diffMonth : "- -"}</span>
                     months
                 </div>
                 <div>
+                    <span class="mr-2.5 text-violet-500">{!isNaN(diffDay) ? diffDay : "- -"}</span>
                     days
                 </div>
             </div>

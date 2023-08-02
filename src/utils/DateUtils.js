@@ -5,47 +5,60 @@ export function DateUtils(day, month, year) {
     let diffMonth;
     let diffYear;
     let diffDay;
-    let dayByMonth;
-    
-    const inputString = `${year}/${month}/${day}`;
-    console.log("birth: ", inputString);
-
-    const today = moment(new Date()).format("YYYY/MM/DD");
-    console.log("today ", today);
-
-    diffYear =  Math.floor(moment.duration(moment(today, 'YYYY/MM/DD')
-        .diff(moment(inputString, 'YYYY/MM/DD'))).asYears());
-    console.log("diffyear ", diffYear);
-
-    diffDay = Math.floor(moment.duration(moment(today, 'YYYY/MM/DD')
-        .diff(moment(inputString, 'YYYY/MM/DD'))).asDays());
-    console.log("diffday: ", diffDay);
+    let diffDayByYear = 0;
+    let diffDayByMonth;
 
     const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const inputString = `${year}/${month}/${day}`;
+    const today = moment(new Date()).format("YYYY/MM/DD");
 
-    if (moment([year]).isLeapYear()) {
-        console.log("1111111");
-    }
+    diffYear =  Math.floor(moment.duration(moment(today, 'YYYY/MM/DD')
+                    .diff(moment(inputString, 'YYYY/MM/DD'))).asYears());
+    console.log("diffyear1 ", diffYear);
 
-    // diff year < 1
-    // diff year > 1
-      // diff month > 1
-      // diff month < 1
+    diffDay = Math.floor(moment.duration(moment(today, 'YYYY/MM/DD')
+                    .diff(moment(inputString, 'YYYY/MM/DD'))).asDays());
+    console.log("diffday1 ", diffDay);
+
+
+    // if (moment([year]).isLeapYear()) {
+    //     console.log("1111111");
+    // }
 
     if (diffYear < 1) {
         diffYear = 0;
         diffMonth = moment().diff(inputString, 'months');
         console.log("diffmonth ", diffMonth);
-        console.log("diffyear1 ", diffYear);
-        // diff month will only be less than 12 because if it is over 12 it will be considered a year
-        for (var i=0; i<diffMonth; i++) {
-            dayByMonth += daysPerMonth[i]
-            console.log("here:", dayByMonth);
-          }
-    } else {
-        const diffYearInMonth = diffYear * 12
-        diffMonth = (moment().diff(inputString, 'months')) - diffYearInMonth;
-        console.log("diffmonth ", diffMonth);
-    } 
+        // diff month should be < 12, 12 month is a year
+        if (diffMonth === 12) {
+            diffYear = 1;
+            diffMonth = 0;
+        }
+        console.log("diffyear2 ", diffYear);
 
+        diffDayByMonth = daysPerMonth.slice(0, diffMonth).reduce((acc, cur) => acc + cur, 0);
+        console.log("diffdaybymonth ", diffDayByMonth);
+        // including the fist day and last day
+        diffDay = diffDay - diffDayByMonth; 
+        console.log("diffday2 ", diffDay);
+    } else {
+        const diffYearInMonth = diffYear * 12;
+
+        for (let i = 0; i < diffYear * 12; i++) {
+            diffDayByYear += daysPerMonth[i%daysPerMonth.length];
+        }
+        console.log("diffyearinmonth ", diffYearInMonth);
+
+        diffMonth = (moment().diff(inputString, 'months')) - diffYearInMonth;
+        console.log("diffmonth2 ", diffMonth);
+
+        diffDayByMonth = daysPerMonth.slice(0, diffMonth).reduce((acc, cur) => acc + cur, 0);
+        console.log("diffdaybymonth ", diffDayByMonth);
+
+        diffDay = diffDay - diffDayByYear - diffDayByMonth;
+        console.log("diffday3 ", diffDay);
+    }
+
+    // console.log({ diffDay, diffMonth, diffYear });
+    return { diffDay, diffMonth, diffYear };
 }
