@@ -118,6 +118,14 @@ function CalculatorForm() {
         }
     }
 
+    const handleDisplayValidation = () => {
+        if (defaultErrorValues.showDay === false && defaultErrorValues.showMonth === false
+            && defaultErrorValues.showYear === false && !isNaN(diffDay) && !isNaN(diffMonth) && !isNaN(diffYear)) {
+                return true;
+        }
+        return false;
+    }
+
     return (
         <form class="max-w-fit pt-6 font-poppins font-semibold text-[11px] tracking-[0.2em]" onSubmit={handleSubmit}>
             <div class="flex pt-5 space-x-4 justify-center text-stone-500">
@@ -173,15 +181,15 @@ function CalculatorForm() {
             </button>
             <div class="flex flex-col text-5xl items-center font-poppinsBoldItalic pt-20 space-y-1 tracking-tight">
                 <div>
-                    <span class="mr-2.5 text-violet-500">{!isNaN(diffYear) ? diffYear : "- -"}</span>
+                    <span class="mr-2.5 text-violet-500">{!handleDisplayValidation() ? "- -" : diffYear}</span>
                     years
                 </div>
                 <div>
-                    <span class="mr-2.5 text-violet-500">{!isNaN(diffMonth) ? diffMonth : "- -"}</span>
+                    <span class="mr-2.5 text-violet-500">{!handleDisplayValidation() ? "- -" : diffMonth}</span>
                     months
                 </div>
                 <div>
-                    <span class="mr-2.5 text-violet-500">{!isNaN(diffDay) ? diffDay : "- -"}</span>
+                    <span class="mr-2.5 text-violet-500">{!handleDisplayValidation() ? "- -" : diffDay}</span>
                     days
                 </div>
             </div>
