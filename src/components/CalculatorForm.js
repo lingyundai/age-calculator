@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {DateUtils} from "../utils/DateUtils";
+import { DateUtils } from "../utils/DateUtils";
 
 function CalculatorForm() {
     const defaultInputValues = {
@@ -17,15 +17,21 @@ function CalculatorForm() {
         yearErrorMessage: '',
     };
 
+    const defaultAgeResult = {
+        diffYear: "- -",
+        diffMonth: "- -",
+        diffDay: "- -",
+    }
+
     const [inputFields, setInputFields] = useState(defaultInputValues);
     const [inputError, setInputError] = useState(defaultErrorValues);
-    const [ageResult, setAgeResult] = useState(0);
+    const [ageResult, setAgeResult] = useState(defaultAgeResult);
 
     const { year, month, day } = inputFields;
 
     const { diffYear, diffMonth, diffDay } = ageResult;
 
-    console.log(ageResult);
+    console.log("age result ", ageResult);
 
     const handleChange = (e) => {
         setInputFields({
@@ -37,6 +43,7 @@ function CalculatorForm() {
     console.log("fields: ", inputFields);
 
     const validateInputs = () => {
+        const res = DateUtils(inputFields.day, inputFields.month, inputFields.year);
         // day
         if (!day || day === "") {
             setInputError((inputError) => ({
@@ -55,6 +62,12 @@ function CalculatorForm() {
                 ...inputError,
                 showDay: false,
                 dayErrorMessage: '',
+            }))
+            setAgeResult((ageResult) => ({
+                ...ageResult,
+               diffDay: res.diffDay,
+                diffMonth: res.diffMonth,
+                diffYear: res.diffYear,
             }))
         }
         console.log("day", inputError);
@@ -77,6 +90,12 @@ function CalculatorForm() {
                 ...inputError,
                 showMonth: false,
                 monthErrorMessage: '',
+            }))
+            setAgeResult((ageResult) => ({
+                ...ageResult,
+               diffDay: res.diffDay,
+                diffMonth: res.diffMonth,
+                diffYear: res.diffYear,
             }))
         }
         console.log("month", inputError);
@@ -101,6 +120,12 @@ function CalculatorForm() {
                 showYear: false,
                 yearErrorMessage: '',
             }))
+             setAgeResult((ageResult) => ({
+                 ...ageResult,
+                diffDay: res.diffDay,
+                 diffMonth: res.diffMonth,
+                 diffYear: res.diffYear,
+             }))
         }
         console.log("year", inputError);
     }
@@ -108,14 +133,6 @@ function CalculatorForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         validateInputs();
-        if (inputError.showDay === false && inputError.showMonth === false && inputError.showYear === false) {
-            const res = DateUtils(inputFields.day, inputFields.month, inputFields.year);
-            setAgeResult({
-                diffDay: res.diffDay,
-                diffMonth: res.diffMonth,
-                diffYear: res.diffYear,
-            })
-        }
     }
 
     const handleDisplayValidation = () => {
