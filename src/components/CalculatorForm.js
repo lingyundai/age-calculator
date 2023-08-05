@@ -108,7 +108,7 @@ function CalculatorForm() {
                 showYear: true,
                 yearErrorMessage: 'This field is required',
             }))
-        } else if (parseInt(year, 10) < 1823 || parseInt(year, 10) < 0 || parseInt(year, 10) > currentYear) {
+        } else if (parseInt(year, 10) < 0 || parseInt(year, 10) > currentYear) {
             setInputError((inputError) => ({
                 ...inputError,
                 showYear: true,
