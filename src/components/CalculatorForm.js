@@ -145,8 +145,8 @@ function CalculatorForm() {
 
     return (
         <form class="max-w-fit pt-6 font-poppins font-semibold text-[11px] tracking-[0.2em]" onSubmit={handleSubmit}>
-            <div class="flex pt-5 space-x-4 justify-center text-stone-500">
-                <div class="w-1/4">
+            <div class="flex pt-9 space-x-4 text-stone-500 justify-center">
+                <div class="w-1/6 min-w-[80px]">
                     <label class={inputError.showDay ? "text-red-400" : "text-stone-500"}>DAY</label>
                     <input 
                         value={day}
@@ -160,7 +160,7 @@ function CalculatorForm() {
                     {inputError.showDay && 
                         <div class={"text-red-400 font-poppinsItalic font-thin tracking-normal"}>{inputError.dayErrorMessage}</div>}
                 </div>
-                <div class="w-1/4">
+                <div class="w-1/6 min-w-[80px]">
                     <label class={inputError.showMonth ? "text-red-400" : "text-stone-500"}>MONTH</label>
                     <input 
                         value={month} 
@@ -174,7 +174,7 @@ function CalculatorForm() {
                     {inputError.showMonth && 
                         <div class={"text-red-400 font-poppinsItalic font-thin tracking-normal"}>{inputError.monthErrorMessage}</div>}
                 </div>
-                <div class="w-1/4">
+                <div class="w-1/6 min-w-[80px]">
                     <label class={inputError.showYear ? "text-red-400" : "text-stone-500"}>YEAR</label>
                     <input 
                         value={year} 
@@ -189,9 +189,9 @@ function CalculatorForm() {
                         <div class={"text-red-400 font-poppinsItalic font-thin tracking-normal"}>{inputError.yearErrorMessage}</div>}
                 </div>
             </div>
-            <button class="pt-16 px-7 inline-flex items-center justify-center w-full">
+            <button class="pt-16 px-7 inline-flex items-center justify-center sm:justify-end w-full">
                 <hr class="w-full"/>
-                <svg class="w-14 h-14 bg-violet-500 rounded-full absolute" viewBox="-32 15 110 15" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-16 h-16 bg-violet-500 rounded-full absolute" viewBox="-32 15 110 15" xmlns="http://www.w3.org/2000/svg">
                     <path fill="none" stroke="#FFF" stroke-width="3"
                         d="M1 22.019C8.333 21.686 23 25.616 23 44m0 0V0m22 22.019C37.667 21.686 23 25.616 23 44"/>
                 </svg>

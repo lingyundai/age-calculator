@@ -4,7 +4,7 @@ function CalculatorContainer() {
     return (
         <div class="flex justify-center items-center 
                     h-screen w-screen bg-stone-100">
-            <div class="h-3/5 w-10/12 bg-white 
+            <div class="min-h-[560px] max-w-[720px] min-w-[360px] h-1/2 bg-white 
                         rounded-br-large rounded-t-default rounded-bl-default">
                 <CalculatorForm />
             </div>
