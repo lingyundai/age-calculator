@@ -3,9 +3,9 @@ import CalculatorForm from "../components/CalculatorForm";
 function CalculatorContainer() {
     return (
         <div class="flex justify-center items-center 
-                    h-screen w-screen bg-stone-100">
-            <div class="min-h-[560px] max-w-[720px] min-w-[360px] h-1/2 bg-white 
-                        rounded-br-large rounded-t-default rounded-bl-default">
+                    bg-stone-100 flex-col w-full min-h-screen overflow-x-hidden">
+            <div class="min-h-[560px] max-w-[720px] bg-white 
+                        rounded-br-large rounded-t-default rounded-bl-default mx-5">
                 <CalculatorForm />
             </div>
         </div>

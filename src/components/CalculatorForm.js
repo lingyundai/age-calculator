@@ -31,8 +31,6 @@ function CalculatorForm() {
 
     const { diffYear, diffMonth, diffDay } = ageResult;
 
-    console.log("age result ", ageResult);
-
     const handleChange = (e) => {
         setInputFields({
             ...inputFields, 
@@ -40,10 +38,7 @@ function CalculatorForm() {
         });
       };
 
-    console.log("fields: ", inputFields);
-
     const validateInputs = () => {
-        const res = DateUtils(inputFields.day, inputFields.month, inputFields.year);
         // day
         if (!day || day === "") {
             setInputError((inputError) => ({
@@ -63,14 +58,7 @@ function CalculatorForm() {
                 showDay: false,
                 dayErrorMessage: '',
             }))
-            setAgeResult((ageResult) => ({
-                ...ageResult,
-               diffDay: res.diffDay,
-                diffMonth: res.diffMonth,
-                diffYear: res.diffYear,
-            }))
         }
-        console.log("day", inputError);
 
         // month
         if (!month || month === "") {
@@ -91,14 +79,7 @@ function CalculatorForm() {
                 showMonth: false,
                 monthErrorMessage: '',
             }))
-            setAgeResult((ageResult) => ({
-                ...ageResult,
-               diffDay: res.diffDay,
-                diffMonth: res.diffMonth,
-                diffYear: res.diffYear,
-            }))
         }
-        console.log("month", inputError);
 
         const currentYear = new Date().getFullYear();
         // year
@@ -120,28 +101,33 @@ function CalculatorForm() {
                 showYear: false,
                 yearErrorMessage: '',
             }))
-             setAgeResult((ageResult) => ({
-                 ...ageResult,
-                diffDay: res.diffDay,
-                 diffMonth: res.diffMonth,
-                 diffYear: res.diffYear,
-             }))
         }
-        console.log("year", inputError);
+    }
+
+    const handleAgeResult = () => {
+        const res = DateUtils(inputFields.day, inputFields.month, inputFields.year);
+        setAgeResult((ageResult) => ({
+            ...ageResult,
+           diffDay: res.diffDay,
+            diffMonth: res.diffMonth,
+            diffYear: res.diffYear,
+        }))
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         validateInputs();
+        handleAgeResult();
     }
 
     const handleDisplayValidation = () => {
-        if (defaultErrorValues.showDay === false && defaultErrorValues.showMonth === false
-            && defaultErrorValues.showYear === false && !isNaN(diffDay) && !isNaN(diffMonth) && !isNaN(diffYear)) {
+        if (inputError.showDay === false && inputError.showMonth === false
+            && inputError.showYear === false && !isNaN(diffDay) && !isNaN(diffMonth) && !isNaN(diffYear)) {
                 return true;
         }
         return false;
     }
+
 
     return (
         <form class="max-w-fit pt-6 font-poppins font-semibold text-[11px] tracking-[0.2em]" onSubmit={handleSubmit}>
@@ -198,15 +184,21 @@ function CalculatorForm() {
             </button>
             <div class="flex flex-col text-5xl items-center font-poppinsBoldItalic pt-20 space-y-1 tracking-tight">
                 <div>
-                    <span class="mr-2.5 text-violet-500">{!handleDisplayValidation() ? "- -" : diffYear}</span>
+                    <span class="mr-2.5 text-violet-500" onChange={handleDisplayValidation}>
+                        {!handleDisplayValidation() ? "- -" : diffYear}
+                    </span>
                     years
                 </div>
                 <div>
-                    <span class="mr-2.5 text-violet-500">{!handleDisplayValidation() ? "- -" : diffMonth}</span>
+                    <span class="mr-2.5 text-violet-500" onChange={handleDisplayValidation}>
+                        {!handleDisplayValidation() ? "- -" : diffMonth}
+                    </span>
                     months
                 </div>
                 <div>
-                    <span class="mr-2.5 text-violet-500">{!handleDisplayValidation() ? "- -" : diffDay}</span>
+                    <span class="mr-2.5 text-violet-500" onChange={handleDisplayValidation}>
+                        {!handleDisplayValidation() ? "- -" : diffDay}
+                    </span>
                     days
                 </div>
             </div>
